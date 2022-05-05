@@ -174,7 +174,7 @@ if (!\class_exists('\Sovit\TikTok\Api')) {
                 }
             }
             $result = $this->remote_call("https://www.tiktok.com/music/original-sound-{$music_id}?lang=en", false);
-            $json_string = Helper::string_between($result, "window['SIGI_STATE']=", ";window['SIGI_RETRY']=");
+            $json_string = Helper::string_between($result, '<script id="SIGI_STATE" type="application/json">', '</script>');
             if (!empty($json_string)) {
                 $result = json_decode($json_string);
                 if (isset($result->MusicModule)) {
